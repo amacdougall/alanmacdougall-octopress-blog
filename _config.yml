@@ -2,12 +2,12 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://yoursite.com
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+url: http://www.alanmacdougall.com/octopress/
+title: Imaginary Numbers
+subtitle: Using the Rules to Bend the Rules
+author: Alan MacDougall
 simple_search: http://google.com/search
-description:
+description: The possibilities and practice of the languages that make the web work.
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in

@@ -1,0 +1,53 @@
+// This File is imported last, and will override other styles in the cascade
+// Add styles here to make changes without digging in too much
+.hidden {
+  display: none;
+}
+
+// example styles
+// for 00050_wrapping: Function Transformation post
+div.functionTransformation {
+	border: thin #006 dotted;
+	font-family: sans-serif;
+	padding: 10px;
+	margin: 10px 0;
+
+  a { color: #006; }
+  a:visited { color: #333; }
+
+  h1 {
+    font-size: 14px;
+  }
+
+  h2 {
+    font-size: 12px;
+  }
+
+  div.controlBlock {
+    display: inline-block;
+    border: thin #006 solid;
+    padding: 10px;
+    margin: 10px;
+    button.selected {
+      background-color: gray;
+    }
+  }
+
+  div.itemList {
+    width: 100%;
+    p {
+      display: inline-block;
+      width: 25%;
+      margin: 10px;
+      padding: 10px;
+      background-color: #336633;
+      color: white;
+    }
+    p.bold {
+      font-weight: bold;
+    }
+    p.italic {
+      font-style: italic;
+    }
+  }
+}

@@ -121,10 +121,6 @@ Short answer: _sorcery_. If you've been paying attention to my constant campaign
 for passing functions as values, you might immediately think of something like
 this:
 
-{% codeblock %}
-_code block_
-{% endcodeblock %}
-
 {% codeblock lang:javascript %}
 function addComment() {
   if (authenticated) {

@@ -4,27 +4,27 @@ title: "Introducing underscore.as"
 date: 2012-03-09 00:02
 comments: true
 categories: 
-    - Actionscript
+    - ActionScript
     - Programming
     - underscore.as
 ---
 
 [underscore.as](http://www.github.com/amacdougall/underscore.as) is an
-Actionscript 3.0 port of Jeremy Ashkenas's excellent
+ActionScript 3.0 port of Jeremy Ashkenas's excellent
 [underscore.js](http://documentcloud.github.com/underscore/) library. Like its
-Javascript original, underscore.as provides a quick syntax for functional
+JavaScript original, underscore.as provides a quick syntax for functional
 programming concepts. Unlike the original, underscore.as is not idiomatic: it
-doesn't look like the kind of Actionscript you probably write every day. You
+doesn't look like the kind of ActionScript you probably write every day. You
 may have to adjust your programming style to take full advantage of it. I hope
 this quick introduction will explain why you should bother.
 
 <!-- more -->
 
-## Actionscript 3.0 is Java
+## ActionScript 3.0 is Java
 
 If you're old, wrinkled, and toothless&#8212;about 35 in programmer
-years&#8212;you remember the Flash 5 and Actionscript 1.0 versions of
-Actionscript. They were the first ones to work like Javascript, and despite
+years&#8212;you remember the Flash 5 and ActionScript 1.0 versions of
+ActionScript. They were the first ones to work like JavaScript, and despite
 their many flaws, they had some useful ideas at their core: prototype-based
 inheritance, mixins, anonymous functions, dynamic classes. Presented with
 these new features, programmers immediately used them for evil. Not only was
@@ -34,16 +34,16 @@ documentation. Broken function scope and an undocumented event system made
 anonymous functions difficult to use as event handlers. Even the base API
 presented an inconsistent mishmash of interfaces.
 
-Beginning with Actionscript 2.0, the language designers began painting over
+Beginning with ActionScript 2.0, the language designers began painting over
 the language with an explicit class system, static type annotations, even
-interfaces. Programmers could now write Actionscript as if it were Java, and
+interfaces. Programmers could now write ActionScript as if it were Java, and
 they did; but old-timers were still free to assign function objects to
-`MovieClip.onRelease` to their heart's content. But with Actionscript 3.0,
+`MovieClip.onRelease` to their heart's content. But with ActionScript 3.0,
 everything changed: old-timers cried bloody murder as static types, object
 orientation, and addEventListener carried the day.
 
-Polyglot programmers will immediately notice that most Actionscript 3.0 code
-today looks a great deal like Java. This is not accidental. Actionscript 3.0 was
+Polyglot programmers will immediately notice that most ActionScript 3.0 code
+today looks a great deal like Java. This is not accidental. ActionScript 3.0 was
 developed hand in hand with Flex in an attempt to woo
 [enterprise developers](http://www.thedailywtf.com), with considerable success.
 "Enterprise Flex" is definitely a thing now. But in the process, quick and easy
@@ -51,22 +51,22 @@ Flash development has gotten bogged down in boilerplate; and at the same time,
 things that should have gotten easier with each language version have stayed
 pretty much the same.
 
-## Actionscript 3.0 is Javascript
+## ActionScript 3.0 is JavaScript
 
 But Adobe added one more feature with AS3: closures. I'll explain these
 mysterious beasts in detail in a later post, but for now it's enough to say
 that a closure is a special type of function which contains extra information,
 beyond the arguments it is given. A closure can do things a normal function
-cannot. With the addition of closures, Actionscript 3.0 gained most of the
-flexibility and power of Javascript&#8212;and if you don't believe that
-Javascript has flexibility and power, look at what libraries like jQuery are
+cannot. With the addition of closures, ActionScript 3.0 gained most of the
+flexibility and power of JavaScript&#8212;and if you don't believe that
+JavaScript has flexibility and power, look at what libraries like jQuery are
 doing under the hood. With a little help from static initializers, language
 hackery, and the ":\*" type annotation, we can achieve in AS3 almost anything
-we can achieve in Javascript.
+we can achieve in JavaScript.
 
 Through judicious use of closures, it is possible to create simple constructs
 of great power, escaping the verbose Java-like syntax of AS3; or, if you
-prefer, building upon the spartan simplicity of core Javascript. Here are a
+prefer, building upon the spartan simplicity of core JavaScript. Here are a
 few examples of idiomatic AS3 code which can be simplified by use of
 underscore.as.
 

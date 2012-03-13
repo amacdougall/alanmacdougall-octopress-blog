@@ -4,11 +4,11 @@ title: "Anonymous Functions in AS3"
 date: 2012-03-10 12:37
 comments: true
 categories: 
-    - Actionscript
+    - ActionScript
     - Programming
     - underscore.as
 ---
-In Actionscript, functions are objects which can be stored in variables and
+In ActionScript, functions are objects which can be stored in variables and
 passed as arguments, just like any other value. Since functions are treated just
 like any other object&#8212;like "first-class citizens," if you will&#8212;AS3
 is said to have "first-class functions." This lets us do stuff that would be
@@ -21,7 +21,7 @@ something you've seen a million times before: the lowly event listener.
 
 ## Anonymous Functions
 
-This syntax appears constantly in Actionscript:
+This syntax appears constantly in ActionScript:
 
 {% codeblock lang:actionscript %}
 /* figure 01 */
@@ -420,10 +420,10 @@ In the next post, we'll discuss closures&#8212;anonymous functions which contain
 extra data. You've already seen a simple closure when we used the `self`
 variable to get a durable reference to `this`. But closures can do far more than
 that; in fact, with closures, it is possible to create a sort of mini-language
-within Actionscript 3, replacing loops and branches with terse, targeted
+within ActionScript 3, replacing loops and branches with terse, targeted
 commands, or even changing the behavior of existing functions. This is common in
 languages like Lisp or Ruby, where this type of programming is called a
-Domain-Specific Language, or DSL. The popular Javascript library jQuery can be
+Domain-Specific Language, or DSL. The popular JavaScript library jQuery can be
 considered a comprehensive DSL for front-end programming; aspects of Rails can
 be considered a DSL for web programming (and much more). We can tap into similar
-power in Actionscript 3 if we choose.
+power in ActionScript 3 if we choose.

@@ -4,7 +4,7 @@ title: "Closures in List Transformation"
 date: 2012-03-10 12:39
 comments: true
 categories: 
-    - Actionscript
+    - ActionScript
     - Programming
     - underscore.as
 ---

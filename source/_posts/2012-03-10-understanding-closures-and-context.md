@@ -4,7 +4,7 @@ title: "Understanding Closures and Context"
 date: 2012-03-10 12:38
 comments: true
 categories: 
-    - Actionscript
+    - ActionScript
     - Programming
     - underscore.as
 ---
@@ -322,7 +322,7 @@ Honestly, function binding _per se_ won't come up very much in AS3. Most
 functions are defined within classes, or can take advantage of normal scope
 rules and the closure mechanism to maintain access to the variables they need.
 But the core idea of a function which _transforms_ other functions will come up
-time and again, not only in AS3 but in Javascript, Ruby, Python, and other
+time and again, not only in AS3 but in JavaScript, Ruby, Python, and other
 languages.
 
 ## The Potential of Closures

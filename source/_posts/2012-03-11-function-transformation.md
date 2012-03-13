@@ -4,11 +4,11 @@ title: "Function Transformation"
 date: 2012-03-11 10:59
 comments: true
 categories: 
-    - Javascript
+    - JavaScript
     - Programming
 ---
 
-Modern Javascript is firmly on the side of magic. Why write a hundred-line set
+Modern JavaScript is firmly on the side of magic. Why write a hundred-line set
 of meticulous loops when you can write a ten-line filter chain? Why invoke a
 factory object dozens of times when you can write a map function? And if you
 want your application's behavior to change from moment to moment, why use
@@ -20,10 +20,10 @@ up. Let them run.
 
 <!-- more -->
 
-(From here on, I'll be using Javascript instead of Actionscript in my examples,
+(From here on, I'll be using JavaScript instead of ActionScript in my examples,
 but the concepts are 100% identical. If you use
 [underscore.as](http://www.github.com/amacdougall/underscore.as/), you can use
-very similar code in Actionscript 3. [jQuery](http://jquery.com) needs no
+very similar code in ActionScript 3. [jQuery](http://jquery.com) needs no
 introduction.)
 
 ## Laborious Authentication
@@ -48,7 +48,7 @@ HTML:
 </div> 
 {% endcodeblock %}
 
-Javascript:
+JavaScript:
 
 {% codeblock lang:javascript %}
 // wrapped in an instantly-executing function to avoid variable spillover
@@ -280,7 +280,7 @@ HTML:
 <div class="itemList"></div>
 {% endcodeblock %}
 
-And the much more interesting Javascript:
+And the much more interesting JavaScript:
 
 {% codeblock lang:javascript %}
 (function() {

@@ -7,7 +7,7 @@ footer: true
 ---
 
 A series of posts on using functional programming concepts in everyday
-Actionscript and Javascript code. Uses
+ActionScript and JavaScript code. Uses
 [underscore.js](http://documentcloud.github.com/underscore/) and
 [underscore.as](https://github.com/amacdougall/underscore.as). This series is
 very code-heavy, but covers a lot of very practical techniques you can use to

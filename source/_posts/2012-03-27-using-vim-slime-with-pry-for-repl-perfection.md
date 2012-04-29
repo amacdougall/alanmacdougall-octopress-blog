@@ -45,7 +45,8 @@ codebase laced with mixins. You can use `pry` as your Rails console by invoking
 [vim](http://www.vim.org/) needs no introduction, but you'll also need the
 [vim-slime](https://github.com/jpalardy/vim-slime) plugin, which lets you send
 text straight from vim into tmux. That's what ties this whole mess together and
-makes it work.
+makes it work. Install the plugin and follow the configuration steps in its
+README.
 
 ## The Steps
 

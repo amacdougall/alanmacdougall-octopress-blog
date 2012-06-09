@@ -5,6 +5,7 @@ date: 2012-03-27 11:21
 comments: true
 categories: 
   - Programming
+  - Tools
 ---
 
 I used to use Python for my everyday scripting tasks, but since I started

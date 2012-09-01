@@ -40,11 +40,16 @@ the world halts in an eyeblink. Except for you. You have total freedom: you can
 peek at your code and tinker with its innards at will. To resume, `Ctrl-D`; your
 code will roar back to life and keep going until it hits another `binding.pry`.
 
+If you run your local Rails instance with `rails server` or `./script/server`,
+you can even drop into a Pry session right in your terminal, using the same
+`binding.pry` technique. Rails debug spam stops: Pry starts.
+
 ## One Step at a Time
 
 The `pry-nav` plugin makes it easy to execute your code one step at a time. When
 your code hits the brick wall of `binding.py`, you can walk it forward, line by
-line, with `next` -- or just `n` if you're not feeling so talkative.
+line, with `next` -- or if you're not feeling so talkative, [alias it to 'n'](https://github.com/nixme/pry-nav#pry-nav)
+in `.pryrc`.
 
 ![frozen in time](/post_content/2012-06-08-interactive-debugging-with-pry/pry_debugging_002.png)
 
@@ -65,7 +70,7 @@ the command line; we'll get our output and then skim a little off the top.
 The `pry-stack_explorer` gem lets you move up and down the call stack. Can't
 debug much of anything without that. These two methods make a nice easy target.
 They don't do much of anything, so there's nothing to debug, but they're simple,
-so debugging is easy. Life should be that simple.
+so debugging is easy. Life should be more like that.
 
 {% codeblock lang:ruby %}
 require 'pry'
@@ -89,8 +94,8 @@ Try to look at something outside the current scope, though...
 
 ![only locals available](/post_content/2012-06-08-interactive-debugging-with-pry/pry_debugging_005.png)
 
-Ruby stonewalls you, but `pry-stack_explorer` gets you where you want to go.
-Just use `up` and `down` to traverse the stack.
+Ruby stonewalls you, but `pry-stack_explorer` doesn't care much for walls. Just
+use `up` and `down` to traverse the stack.
 
 ![going up the stack](/post_content/2012-06-08-interactive-debugging-with-pry/pry_debugging_006.png)
 

@@ -94,6 +94,12 @@ it in pry all along, there's no write/run cycle to use up your keystrokes or
 mental effort. Writing, experimenting, testing, and polishing are as tight as
 four fingers in a fist.
 
+## Update: Pry as a Stepping Debugger
+
+Since writing this post, I've learned a lot more about how to use Pry to debug a
+running program. Yes, even Rails. [Interactive Debugging with Pry](http://www.alanmacdougall.com/blog/2012/06/08/interactive-debugging-with-pry/)
+has the scoop.
+
 Like this post? Find it useful?
 [Follow me on Twitter](http://www.twitter.com/alan_macdougall) to hear when I've
 got a new one. Or [get the RSS feed](http://www.alanmacdougall.com/atom.xml) if

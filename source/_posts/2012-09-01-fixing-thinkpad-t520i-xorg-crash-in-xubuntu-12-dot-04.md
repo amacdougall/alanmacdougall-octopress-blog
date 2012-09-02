@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Fixing xorg crash in Thinkpad T520i in Ubuntu 12.04"
+title: "Fixing xorg crash in Ubuntu 12.04 on Thinkpad T520i"
 date: 2012-09-01 13:48
 comments: true
 categories: 
@@ -12,10 +12,12 @@ go-round. But for now, my personal laptop is a Thinkpad T520i running Xubuntu.
 If you're on the same train, you might have noticed that ever since the 12.04
 update, sometimes your laptop doesn't quite sleep right. You close the lid and
 that crescent moon just sits there blinking quietly, and when you open it back
-up, the entire desktop has crashed, dropping you to the login screen; and when
-you log back in, nothing works right. You check the error report, and it says
-xorg crashed; you go deeper, and you find an error handling SIGABRT. What does
-it mean? You tell me.
+up, the entire desktop has crashed, dropping you to the login screen. You log
+back in, nothing works right. You check the error report, and it says xorg
+crashed; you go deeper, and you find an error handling SIGABRT. What does it
+mean? You tell me.
+
+<!-- more -->
 
 There's a fix, but I had to play bug-report hopscotch before I found it. I
 finally fetched up on [this bug report](https://bugs.launchpad.net/debian/+source/xorg-server/+bug/956071).

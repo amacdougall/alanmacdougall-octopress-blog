@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Intents and Consequences"
+title: "Refactoring to Events"
 date: 2013-01-04 09:44
 comments: true
 categories: Programming
@@ -15,25 +15,18 @@ clamped to your forehead.
 
 As a front-end developer, I've whipped myself in the forehead more times than I
 care to count. Do that often enough, and you start to get an intuition about
-things. I've got a theory about event handler chains: _keep your decisions close
-to the user's intent; put your consequences further out._
+things. I've got a theory about event handling: _make your decisions at the
+right level of abstraction._
 
-Maybe that was enough to put a little light bulb over your head. Fair enough. If
-not...
+Maybe this is old hat. It should have been old hat to me, too, but you can't see
+how old a hat is when you're wearing it. But first let's talk about kinds of
+events.
 
 <!-- more -->
 
 ## Event Types
 
 Events come in three flavors.
-
-### Completions
-
-Sometimes you set a metaphorical wheel spinning, and you want to know when it
-comes to rest. Downloads, uploads, API requests, background jobs of all kinds.
-Maybe an actual wheel. Point is, you started it; you just don't know when it's
-going to end. When it's done, you can continue with simple straight-line code. I
-tend to just call these "completion" events.
 
 ### Notifications
 
@@ -44,15 +37,24 @@ when the underlying data changes, or checking for that damned 140-character
 limit; those are all notifications. You aren't reporting on the results of a
 delayed process, and crucially, you aren't directly handling a user action.
 
+### Completions
+
+Sometimes you set a metaphorical wheel spinning, and you want to know when it
+comes to rest. Downloads, uploads, API requests, background jobs of all kinds.
+Maybe an actual wheel. Point is, you started it; you just don't know when it's
+going to end. When it's done, you can continue with simple straight-line code. I
+tend to just call these "completion" events.
+
 ### Intents
 
 The last big kind of event, and the topic of this article, is what I call an
 "intent." I borrowed the term from Android, and the new "web intents" that are
-not quite sweeping the internet just yet. An event that comes straight from the
-user, because the user wanted to do something, is an intent. You might have to
-put an extra layer in your code to turn a plain-jane click into something with a
-little more meat to it. Maybe something like this. Assume the existence of an
-`Emitter` mixin which adds `on` and `emit` methods.
+not quite sweeping the internet just yet. An event that forces a decision is an
+intent. It could be user input, it could be server data that forces you down a
+different code path: either way, new information just entered your system. You
+might have to put an extra layer in your code to turn a plain-jane click into
+something with a little more meat to it. Maybe something like this. Assume the
+existence of an `Emitter` mixin which adds `on` and `emit` methods.
 
 {% codeblock lang="javascript" %}
 Intents = {
@@ -85,7 +87,7 @@ is unambiguous. This pattern saves you from keeping all your domain logic in a
 briar patch of jQuery callbacks; but it also gives you concrete concepts to work
 with as your application evolves.
 
-## Decisions and Consequences
+## Response and Responsibility
 
 Sometimes, to handle an event, you need to make decisions. Should the user be
 able to delete this photo? Does this link prompt a paywall? Should we display a
@@ -106,7 +108,7 @@ photoSelector.on("select", function(event) {
 Straightforward. Uncontroversial. But you know as well as I do that
 "straightforward" never stays that way for very long.
 
-### Notification Hopscotch
+### Working Too Hard _Is_ Hardly Working
 
 Take Paperless Post. Users buy _coins_. You use coins to gussy up your cards.
 Choosing a fancy card design uses coins, so when a user selects a new design, we
@@ -137,7 +139,10 @@ Heck, maybe a different architectural layer. You just have to ask yourself one
 thing: "Does this decision make sense here?" If your selection handler is
 displaying a paywall, you can bet your bottom dollar the answer is no.
 
-### When to Decide; When to Pass the Buck
+In short, if your event handler is making too many decisions, look for a way to
+spread that hard work around. If it worked for Tom Sawyer, it can work for you.
+
+### Gratifaction
 
 Our situation at Paperless Post was more complicated than I'm letting on. The
 selection handler did not make the paywall decision... but it gathered
@@ -167,16 +172,12 @@ liner setter? The price calculator should handle all that business by itself. It
 should store its own snapshots of the past prices, and when it hears that
 `assetChanged` event, it should do its own math.
 
-Rule of thumb: put your decisions close to the events that prompt them. Keep
-things in the component they belong in. If the event forces a decision, make
-that decision as close to the initial event handler as possible. Don't try to
-make a decision after five levels of hopscotch.
+## tl;dr
 
-The coin spins both ways, though. If you always handle the same event the same
-way, then that handler isn't a decision. I call it a _consequence_. Put your
-consequences anywhere you want. Safe to say that most event handlers are
-consequences, really. Trick is to know the difference.
-
-## Conclusion
-
-??
+Rule of thumb: put your decisions close to the events that prompt them. If an
+event handler is doing too much work, maybe a new event type should exist in
+your system. Don't worry that you are adding too many layers of abstraction. If
+you design the abstractions right up front, sure, you end up with
+[SimpleBeanFactoryAwareAspectInstanceFactory](http://static.springsource.org/spring/docs/2.5.x/api/org/springframework/aop/config/SimpleBeanFactoryAwareAspectInstanceFactory.html).
+But if you have a problem, and a new layer of abstraction is the solution, don't
+look a git horse in the commit.

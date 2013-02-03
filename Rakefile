@@ -8,6 +8,7 @@ ssh_user       = "amacdougall@alanmacdougall.com"
 ssh_port       = "22"
 document_root  = "~/webapps/alanmacdougall_octopress_blog"
 rsync_delete   = true
+rsync_options  = "--perms --chmod=u+rwX,g+rwX,o+rX,o-w" # beyond -avze
 deploy_default = "rsync"
 
 # This will be configured for you when you run config_deploy
@@ -238,7 +239,7 @@ task :rsync do
     exclude = "--exclude-from '#{File.expand_path('./rsync-exclude')}'"
   end
   puts "## Deploying website via Rsync"
-  ok_failed system("rsync -avze 'ssh -p #{ssh_port}' #{exclude} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{ssh_user}:#{document_root}")
+  ok_failed system("rsync #{rsync_options} -avze 'ssh -p #{ssh_port}' #{exclude} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{ssh_user}:#{document_root}")
 end
 
 desc "deploy public directory to github pages"

@@ -56,7 +56,7 @@ might have to put an extra layer in your code to turn a plain-jane click into
 something with a little more meat to it. Maybe something like this. Assume the
 existence of an `Emitter` mixin which adds `on` and `emit` methods.
 
-{% codeblock lang="javascript" %}
+{% codeblock lang:javascript %}
 Intents = {
   init: function() {
     var intents = this;
@@ -95,7 +95,7 @@ toast notification, and if so, what data should it contain? If the event handler
 is close to the event source, this is easy: simply make the decision and move
 on.
 
-{% codeblock lang="javascript" %}
+{% codeblock lang:javascript %}
 photoSelector.on("select", function(event) {
   if (event.photo.someCondition == true) {
     takeAction();
@@ -148,7 +148,7 @@ Our situation at Paperless Post was more complicated than I'm letting on. The
 selection handler did not make the paywall decision... but it gathered
 information for it. It looked something like this.
 
-{% codeblock lang="javascript" %}
+{% codeblock lang:javascript %}
 linerSelector.on("change", function(event) {
   var newLiner = PP.assets.findById(event.id);
   var oldCost = PP.price.calculate();

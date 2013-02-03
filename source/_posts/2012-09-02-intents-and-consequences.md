@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Intents and Consequences"
-date: 2012-09-02 09:44
+date: 2013-01-04 09:44
 comments: true
 categories: Programming
 ---
@@ -25,14 +25,15 @@ not...
 
 ## Event Types
 
-Events come in three main flavors.
+Events come in three flavors.
 
 ### Completions
 
 Sometimes you set a metaphorical wheel spinning, and you want to know when it
 comes to rest. Downloads, uploads, API requests, background jobs of all kinds.
 Maybe an actual wheel. Point is, you started it; you just don't know when it's
-going to end. I tend to just call these "completion" events.
+going to end. When it's done, you can continue with simple straight-line code. I
+tend to just call these "completion" events.
 
 ### Notifications
 
@@ -102,22 +103,79 @@ photoSelector.on("select", function(event) {
 });
 {% endcodeblock %}
 
-Straightforward. Uncontroversial. 
+Straightforward. Uncontroversial. But you know as well as I do that
+"straightforward" never stays that way for very long.
 
+### Notification Hopscotch
 
-* Notifications can cause multiple hops, and you get further away from the
-  original intent
-* If you make decisions based on a notification, ask if those decisions are
-  appropriate to the architectural layer you're on (and if you don't have arch
-  layers, decompose your shit bro)
-* If your decisions aren't layer-appropriate, refactor to move them closer to
-  the intent
+Take Paperless Post. Users buy _coins_. You use coins to gussy up your cards.
+Choosing a fancy card design uses coins, so when a user selects a new design, we
+have to handle the _selection_ by loading up the new graphics and adjusting the
+layout... but we also have to add coins to the price of the card. If the card
+used to be free, that means we have to display a paywall, and if not, we display
+a brief message. On the paywall, if the user clicks the _cancel_ button, we have
+to undo the design change.
 
-A lot of times, you do a single concrete thing in response to an event. I call
-that a "consequence." Consequences can safely live many notification hops away
-from the intent.
+Hear that sound? That distant crashing, crumbling noise? Areas of concern,
+smashing into each other and cracking and breaking and falling into the sea.
 
-Example refactoring? Discuss PP situation that led to this revelation?
+For a long time, we coded as if there was only one event happening here. The
+user chose a new card design, and we handled it like this:
+
+1. Change the card design.
+1. Show the right UI for the price change.
+
+But there are two events here, not one. First the user selects the design
+change. We can handle that on the spot. Then the price changes. These are two
+different things, no two ways about it. Instead, we should handle it like this:
+
+1. Change the card design.
+1. Set the price.
+
+And then handle the price change somewhere else. Different component, maybe.
+Heck, maybe a different architectural layer. You just have to ask yourself one
+thing: "Does this decision make sense here?" If your selection handler is
+displaying a paywall, you can bet your bottom dollar the answer is no.
+
+### When to Decide; When to Pass the Buck
+
+Our situation at Paperless Post was more complicated than I'm letting on. The
+selection handler did not make the paywall decision... but it gathered
+information for it. It looked something like this.
+
+{% codeblock lang="javascript" %}
+linerSelector.on("change", function(event) {
+  var newLiner = PP.assets.findById(event.id);
+  var oldCost = PP.price.calculate();
+  card.liner = newLiner;
+  var newCost = PP.price.calculate(); // different result now
+
+  PP.assets.emit("assetChanged", {
+    asset: newLiner,
+    oldCost: oldCost,
+    newCost: newCost,
+    undoFunction: function() {PP.history.backtrack();}
+  });
+});
+{% endcodeblock %}
+
+Maybe we were too close to the barn to make out more than just some red painted
+wood, but we had this in our codebase for a long time. Still do, in fact. But
+now I know what's wrong. To decide whether to pop the paywall, we need to know
+if the price went up. Sure. But why in heck is that code lumped in with the
+liner setter? The price calculator should handle all that business by itself. It
+should store its own snapshots of the past prices, and when it hears that
+`assetChanged` event, it should do its own math.
+
+Rule of thumb: put your decisions close to the events that prompt them. Keep
+things in the component they belong in. If the event forces a decision, make
+that decision as close to the initial event handler as possible. Don't try to
+make a decision after five levels of hopscotch.
+
+The coin spins both ways, though. If you always handle the same event the same
+way, then that handler isn't a decision. I call it a _consequence_. Put your
+consequences anywhere you want. Safe to say that most event handlers are
+consequences, really. Trick is to know the difference.
 
 ## Conclusion
 
